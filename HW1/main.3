@@ -1,0 +1,41 @@
+//二進位轉十六進位
+//Description
+//輸入(scanf)一個字串代表一個二進位數，將其轉換為十六進位數並且輸出 (prinft)
+//Input
+//僅包含「0」與「1」的組合，共八個位元
+//Output
+//包含「0」至「F」的組合，最多兩個位元，最少一個字元
+//Sample Input 1 
+//00000000\n
+//Sample Output 1
+//0\n
+//Sample Input 2 
+//00000101\n
+//Sample Output 2
+//5\n
+//Sample Input 3 
+//11111111\n
+//Sample Output 3
+//FF\n
+//Sample Input 4 
+//01010000\n
+//Sample Output 4
+//50\n
+
+#include <stdio.h>
+
+int main() {
+    char binary[9];
+    scanf("%s", binary);
+
+    // 將二進位數轉換為十六進位數
+    int decimal = 0;
+    for (int i = 0; i < 8; i++) {
+        decimal = decimal * 2 + (binary[i] - '0');
+    }
+
+    // 輸出十六進位數
+    printf("%X\n", decimal);
+
+    return 0;
+}
