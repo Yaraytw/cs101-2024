@@ -1,52 +1,39 @@
 #include <iostream>
-#include <string>
 #include <fstream>
-#include <sstream>
-
+#include <string>
 using namespace std;
+class ReadClass
+{
 
-class myString {
-    private:
-        string m_str;
-    public:
-        myString(string s) {
-            m_str = s;
-        }
-};
-
-class ReadClass {
-    private:
-        int m_classCount = 0;
-        string classNames[2^5];
-    public:
-        ReadClass() {}
-        void showClass() {
-            ifstream in;
-            string line;
-            in.open("main.cpp");
-
-            while (getline(in, line)) {
-                if (line.find("class") == 0){
-                    classNames[m_classCount++] = line;
-                }
-            }
+public:
+    void showClass()
+    {
+        ifstream in;
+        string line;
+        int count = 0, count_len = 0;
+        string *ans;
+        in.open("main.cpp");
+        if (in.fail())
+        {
+            cout << "Error opeing a file" << endl;
             in.close();
-            
-            if (m_classCount) {
-                cout << m_classCount << " class" << " in main.cpp" << endl;
-                for (int i=0; i<m_classCount; i++) {
-                    stringstream str(classNames[i]);
-                    for (int j=0; j<m_classCount; j++) {
-                        getline(str, line, ' ');
-                        cout << line << " ";
-                    }
-                    cout << endl;
-                }
+        }
+        while (getline(in, line))
+        {
+
+            if (line[0] == 'c' && line[1] == 'l')
+            {
+                count++;
+                cout << line << endl;
             }
         }
+        cout << count << " class in main.cpp" << endl;
+        in.close();
+    }
 };
 
-int main() {
+int main()
+{
     ReadClass rfile;
     rfile.showClass();
     return 0;
